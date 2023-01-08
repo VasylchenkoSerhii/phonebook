@@ -1,50 +1,50 @@
-import { useSelector, useDispatch } from "react-redux";
-import { removeContact } from "redux/contacts/operations";
-import { selectContacts, selectFilter } from "redux/selectors";
+import { useSelector, useDispatch } from 'react-redux';
+import { removeContact } from 'redux/contacts/operations';
+import { selectContacts, selectFilter } from 'redux/selectors';
 import {
-    ListItem,
-    List,
-    Number,
-    RemoveContactBtn
-} from "./ContactsList.styled";
+  ListItem,
+  List,
+  Number,
+  RemoveContactBtn,
+} from './ContactsList.styled';
 
 export default function ContactsList() {
-    const contacts = useSelector(selectContacts);
-    const filter = useSelector(selectFilter);
-    const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
+  const dispatch = useDispatch();
 
-    const  getFilteredContacts = () => {
+  const getFilteredContacts = () => {
+    if (!filter) {
+      return contacts;
+    }
 
-        if (!filter) {
-        return contacts;
-        };
+    const normalizedFilter = filter.toLocaleLowerCase();
+    const filteredContacts = contacts.filter(({ name }) => {
+      const normalizedName = name.toLocaleLowerCase();
+      const result = normalizedName.includes(normalizedFilter);
+      return result;
+    });
 
-        const normalizedFilter = filter.toLocaleLowerCase();
-        const filteredContacts = contacts.filter(({ name }) => {
-        const normalizedName = name.toLocaleLowerCase();
-        const result = normalizedName.includes(normalizedFilter);
-        return result;
-        });
+    return filteredContacts;
+  };
 
-        return filteredContacts;
-    };
+  const filterContacts = getFilteredContacts();
 
-    const filterContacts = getFilteredContacts();
-
-    const markup = filterContacts.map(({ id, name, number }) => (
-        <ListItem key={id}>
-            <p>
-                {name}: <Number>{number}
-                        <RemoveContactBtn type="button" onClick={() => dispatch(removeContact(id))}>
-                            Delete
-                        </RemoveContactBtn>
-                </Number>
-            </p>
-        </ListItem>
-    ));
-    return (
-        <List>
-            {markup}
-        </List>
-    );
-};
+  const markup = filterContacts.map(({ id, name, number }) => (
+    <ListItem key={id}>
+      <p>
+        {name}:{' '}
+        <Number>
+          {number}
+          <RemoveContactBtn
+            type="button"
+            onClick={() => dispatch(removeContact(id))}
+          >
+            Delete
+          </RemoveContactBtn>
+        </Number>
+      </p>
+    </ListItem>
+  ));
+  return <List>{markup}</List>;
+}

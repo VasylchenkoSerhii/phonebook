@@ -1,9 +1,9 @@
-import { Overlay } from "./Loader.styled";
+import { Overlay } from './Loader.styled';
 
 export default function Loader() {
-    return (
-        <Overlay>
-            <p>....LOADING</p>
-        </Overlay>
-    );
-};
+  return (
+    <Overlay>
+      <p>....LOADING</p>
+    </Overlay>
+  );
+}
