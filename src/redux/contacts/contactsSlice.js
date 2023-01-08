@@ -3,7 +3,7 @@ import {
     fetchContacts,
     addContact,
     removeContact
-} from "../operations";
+} from "./operations";
 import {
     fetchContactsReducer,
     addContactReducer,
@@ -20,11 +20,9 @@ const getActions = type => isAnyOf(...extraActions.map(action => action[type]));
 const contactsSlice = createSlice({
     name: "contacts",
     initialState: {
-        contacts: {
-            items: [],
-            isLoading: false,
-            error: null,
-        }
+        items: [],
+        isLoading: false,
+        error: null,
     },
     extraReducers: builder => builder
         .addCase(fetchContacts.fulfilled, fetchContactsReducer)

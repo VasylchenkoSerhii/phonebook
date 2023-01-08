@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
-import { addContact } from "redux/operations";
+import { addContact } from "redux/contacts/operations";
 import { selectContacts } from "redux/selectors";
 import { Formik } from "formik";
 import {
@@ -17,7 +17,7 @@ const shema = yup.object().shape({
     name: yup.string()
         .matches(/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/ , 'Invalid name')
         .required("Name is required"),
-    phone: yup.string()
+    number: yup.string()
         .matches(/\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/ , 'Invalid number')
         .required("Number is required"),
 });
@@ -28,7 +28,7 @@ export default function FormContacts() {
 
     const initialValues = {
         name: "",
-        phone: "",
+        number: "",
     };
 
     const dispatch = useDispatch();
@@ -64,8 +64,8 @@ export default function FormContacts() {
                     </Label>
                     <Label>
                         Number
-                        <InputForm type="tel" name="phone" placeholder="+380" />
-                        <Error component="div" name="phone" />
+                        <InputForm type="tel" name="number" placeholder="+380" />
+                        <Error component="div" name="number" />
                     </Label>
                     <FormBtn type="submit">Add contact</FormBtn>
                 </FormStyle>
