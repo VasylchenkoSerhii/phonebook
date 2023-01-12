@@ -40,9 +40,9 @@ export default function FormContacts() {
 
   const dispatch = useDispatch();
 
-  const isDublicate = ({ name, phone }) => {
+  const isDublicate = ({ name, number }) => {
     const result = contacts.find(
-      item => item.name === name || item.phone === phone
+      item => item.name === name || item.number === number
     );
     return result;
   };

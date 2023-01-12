@@ -1,11 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { register, logIn, logOut, refreshUser } from './operations';
+import {
+  registerErrorReducer,
+  logInErrorREducer,
+  LogOutReducer,
+  refreshUserRedcer,
+} from './caseReducer';
 
 const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  registerError: null,
+  loginError: null,
 };
 
 const authSlice = createSlice({
@@ -13,32 +21,26 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(register.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
-        state.token = payload.token;
-        state.isLoggedIn = true;
-      })
-      .addCase(logIn.fulfilled, (state, { payload }) => {
-        state.user = payload.user;
-        state.token = payload.token;
-        state.isLoggedIn = true;
-      })
-      .addCase(logOut.fulfilled, state => {
-        state.user = { name: null, email: null };
-        state.token = null;
-        state.isLoggedIn = false;
-      })
+      .addCase(register.rejected, registerErrorReducer)
+      .addCase(logIn.rejected, logInErrorREducer)
+      .addCase(logOut.fulfilled, LogOutReducer)
+      .addCase(refreshUser.fulfilled, refreshUserRedcer)
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
-      .addCase(refreshUser.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
-      });
+      })
+      .addMatcher(
+        isAnyOf(register.fulfilled, logIn.fulfilled),
+        (state, { payload }) => {
+          state.user = payload.user;
+          state.token = payload.token;
+          state.isLoggedIn = true;
+          state.loginError = null;
+          state.registerError = null;
+        }
+      );
   },
 });
 
