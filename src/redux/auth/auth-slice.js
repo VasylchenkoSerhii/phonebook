@@ -16,9 +16,12 @@ const initialState = {
   loginError: null,
 };
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    resetState: () => initialState,
+  },
   extraReducers: builder => {
     builder
       .addCase(register.rejected, registerErrorReducer)

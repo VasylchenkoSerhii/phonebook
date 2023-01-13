@@ -8,7 +8,9 @@ export default function UserMenu() {
   const { user } = useAuth();
   return (
     <Wripper>
-      <Greeting>Hello {user.name}</Greeting>
+      <Greeting>
+        Hello, <b>{user.name}</b>
+      </Greeting>
       <LogOutBtn type="button" onClick={() => dispatch(logOut())}>
         Logout
       </LogOutBtn>

@@ -8,7 +8,7 @@ export const theme = {
     background: '#cccccc',
     primary: '#07c',
     secondary: '#05a',
-    accent: '#0d0d0d',
+    accent: '#4f4e54',
     lightAccent: '#cea8e3',
     muted: '#f6f6f6',
     error: '#990000',
@@ -25,7 +25,7 @@ export const theme = {
     m: '16px',
     l: '26px',
     xl: '36px',
-    xxl: '56px'
+    xxl: '56px',
   },
   fontWeights: {
     normal: 400,
@@ -38,7 +38,7 @@ export const theme = {
   borders: {
     none: 'none',
     normal: '1px solid',
-    bold: '2px solid'
+    bold: '2px solid',
   },
   radii: {
     none: '0',

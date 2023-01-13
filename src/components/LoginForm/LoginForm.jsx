@@ -42,7 +42,7 @@ export default function LoginForm() {
 
   return (
     <SectionRegisterForm>
-      <FormStyle onSubmit={formik.handleSubmit}>
+      <FormStyle autoComplete="on" onSubmit={formik.handleSubmit}>
         <TextField
           required
           value={formik.values.email}

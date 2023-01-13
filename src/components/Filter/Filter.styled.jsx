@@ -17,11 +17,5 @@ export const FilterStyle = styled.input`
 `;
 
 export const SectionFilter = styled.section`
-  padding-top: 20px;
   padding-bottom: 20px;
-
-  @media screen and (min-width: 1200px) {
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
 `;
