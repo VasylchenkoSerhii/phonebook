@@ -2,14 +2,8 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import TextField from '@mui/material/TextField';
 import * as yup from 'yup';
-import {
-  FormStyle,
-  SectionRegisterForm,
-  InputForm,
-  Label,
-  Error,
-  FormBtn,
-} from './LoginForm.styled';
+import { SectionRegisterForm } from './LoginForm.styled';
+import { FormBtn } from './LoginForm.styled';
 import { logIn } from 'redux/auth/operations';
 
 const shema = yup.object().shape({
