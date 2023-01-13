@@ -1,14 +1,8 @@
 import { useDispatch } from 'react-redux';
-import { Formik } from 'formik';
+import { useFormik } from 'formik';
 import * as yup from 'yup';
-import {
-  FormStyle,
-  SectionRegisterForm,
-  InputForm,
-  Label,
-  Error,
-  FormBtn,
-} from './RegisterForm.styled';
+import TextField from '@mui/material/TextField';
+import { SectionRegisterForm, FormBtn } from './RegisterForm.styled';
 import { register } from 'redux/auth/operations';
 
 const shema = yup.object().shape({
@@ -44,20 +38,66 @@ export default function RegisterForm() {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
-    dispatch(register(values));
-    resetForm();
-  };
+  // const handleSubmit = (values, { resetForm }) => {
+  //   dispatch(register(values));
+  //   resetForm();
+  // };
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema: shema,
+    onSubmit: (values, { resetForm }) => {
+      dispatch(register(values));
+      resetForm();
+    },
+  });
 
   return (
     <SectionRegisterForm>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={shema}
-      >
-        <FormStyle>
-          <Label>
+      <form onSubmit={formik.handleSubmit}>
+        <TextField
+          required
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          id="name"
+          label="Name"
+          name="name"
+          type="text"
+          margin="normal"
+          variant="outlined"
+          size="small"
+          error={formik.touched.name && Boolean(formik.errors.name)}
+          helperText={formik.touched.name && formik.errors.name}
+        />
+        <TextField
+          required
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          id="email"
+          label="Email"
+          name="email"
+          type="email"
+          margin="normal"
+          variant="outlined"
+          size="small"
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
+        />
+        <TextField
+          required
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          id="password"
+          label="Password"
+          name="password"
+          type="password"
+          margin="normal"
+          variant="outlined"
+          size="small"
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
+        />
+        {/* <Label>
             Name
             <InputForm type="text" name="name" />
             <Error component="div" name="name" />
@@ -71,10 +111,9 @@ export default function RegisterForm() {
             Password
             <InputForm type="password" name="password" />
             <Error component="div" name="password" />
-          </Label>
-          <FormBtn type="submit">Register</FormBtn>
-        </FormStyle>
-      </Formik>
+          </Label> */}
+        <FormBtn type="submit">Register</FormBtn>
+      </form>
     </SectionRegisterForm>
   );
 }

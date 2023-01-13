@@ -18,10 +18,8 @@ export const Container = styled.div`
 
 export const Main = styled.main`
   text-align: center;
-  padding-top: 20px;
   padding-bottom: 20px;
   @media screen and (min-width: 1200px) {
-    padding-top: 40px;
     padding-bottom: 40px;
   }
 `;

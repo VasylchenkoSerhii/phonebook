@@ -2,7 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { register, logIn, logOut, refreshUser } from './operations';
 import {
   registerErrorReducer,
-  logInErrorREducer,
+  logInErrorReducer,
   LogOutReducer,
   refreshUserRedcer,
 } from './caseReducer';
@@ -22,7 +22,7 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(register.rejected, registerErrorReducer)
-      .addCase(logIn.rejected, logInErrorREducer)
+      .addCase(logIn.rejected, logInErrorReducer)
       .addCase(logOut.fulfilled, LogOutReducer)
       .addCase(refreshUser.fulfilled, refreshUserRedcer)
       .addCase(refreshUser.pending, state => {

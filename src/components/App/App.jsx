@@ -3,12 +3,13 @@ import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { refreshUser } from 'redux/auth/operations';
 import { useAuth } from 'hooks/useAuth';
+import { Refresh } from './App.styled';
 import RestrictedRoute from 'components/RestrictedRoute/RestrictedRoute';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import Layout from 'components/Layout/Layout';
 
 const Home = lazy(() => import('../../pages/Home/Home'));
-const Contacts = lazy(() => import('../../pages/Contacts'));
+const Contacts = lazy(() => import('../../pages/Contacts/Contacts'));
 const Register = lazy(() => import('../../pages/Register'));
 const Login = lazy(() => import('../../pages/Login'));
 
@@ -22,7 +23,7 @@ export default function App() {
   }, [dispath]);
 
   return isRefreshing ? (
-    <p>Refreshing user...</p>
+    <Refresh>Refreshing user...</Refresh>
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>

@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { Formik } from 'formik';
+import { useFormik } from 'formik';
+import TextField from '@mui/material/TextField';
 import * as yup from 'yup';
 import {
   FormStyle,
@@ -36,20 +37,52 @@ export default function LoginForm() {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
-    dispatch(logIn(values));
-    resetForm();
-  };
+  // const handleSubmit = (values, { resetForm }) => {
+  //   dispatch(logIn(values));
+  //   resetForm();
+  // };
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema: shema,
+    onSubmit: (values, { resetForm }) => {
+      dispatch(logIn(values));
+      resetForm();
+    },
+  });
 
   return (
     <SectionRegisterForm>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={shema}
-      >
-        <FormStyle>
-          <Label>
+      <form onSubmit={formik.handleSubmit}>
+        <TextField
+          required
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          id="email"
+          label="Email"
+          name="email"
+          type="email"
+          margin="normal"
+          variant="outlined"
+          size="small"
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
+        />
+        <TextField
+          required
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          id="password"
+          label="Password"
+          name="password"
+          type="password"
+          margin="normal"
+          variant="outlined"
+          size="small"
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
+        />
+        {/* <Label>
             Email
             <InputForm type="email" name="email" />
             <Error component="div" name="email" />
@@ -58,10 +91,9 @@ export default function LoginForm() {
             Password
             <InputForm type="password" name="password" />
             <Error component="div" name="password" />
-          </Label>
-          <FormBtn type="submit">Log in</FormBtn>
-        </FormStyle>
-      </Formik>
+          </Label> */}
+        <FormBtn type="submit">Log in</FormBtn>
+      </form>
     </SectionRegisterForm>
   );
 }

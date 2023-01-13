@@ -3,7 +3,7 @@ export const registerErrorReducer = (state, { payload }) => {
   state.registerError = payload;
 };
 
-export const logInErrorREducer = (state, { payload }) => {
+export const logInErrorReducer = (state, { payload }) => {
   state.registerError = null;
   state.loginError = payload;
 };
