@@ -2,15 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { addContact } from 'redux/contacts/operations';
 import { selectContacts } from 'redux/selectors';
-import { Formik } from 'formik';
-import {
-  FormStyle,
-  SectionForm,
-  InputForm,
-  Label,
-  Error,
-  FormBtn,
-} from './FormContacts.styled';
+import { useFormik } from 'formik';
+import TextField from '@mui/material/TextField';
+import { FormStyle, FormBtn, SectionForm } from './FormContacts.styled';
 import * as yup from 'yup';
 
 const shema = yup.object().shape({
@@ -47,25 +41,52 @@ export default function FormContacts() {
     return result;
   };
 
-  const handleSubmit = (values, { resetForm }) => {
-    if (isDublicate(values)) {
-      toast('this name or number is already added to contacts');
+  const formik = useFormik({
+    initialValues,
+    validationSchema: shema,
+    onSubmit: (values, { resetForm }) => {
+      if (isDublicate(values)) {
+        toast('this name or number is already added to contacts');
+        resetForm();
+        return;
+      }
+      dispatch(addContact(values));
       resetForm();
-      return;
-    }
-    dispatch(addContact(values));
-    resetForm();
-  };
+    },
+  });
 
   return (
     <SectionForm>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={shema}
-      >
-        <FormStyle>
-          <Label>
+      <FormStyle onSubmit={formik.handleSubmit}>
+        <TextField
+          required
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          id="name"
+          label="Name"
+          name="name"
+          type="text"
+          margin="normal"
+          variant="outlined"
+          size="small"
+          error={formik.touched.name && Boolean(formik.errors.name)}
+          helperText={formik.touched.name && formik.errors.name}
+        />
+        <TextField
+          required
+          value={formik.values.number}
+          onChange={formik.handleChange}
+          id="number"
+          label="Number"
+          name="number"
+          type="tel"
+          margin="normal"
+          variant="outlined"
+          size="small"
+          error={formik.touched.number && Boolean(formik.errors.number)}
+          helperText={formik.touched.number && formik.errors.number}
+        />
+        {/* <Label>
             Name
             <InputForm
               type="text"
@@ -78,10 +99,9 @@ export default function FormContacts() {
             Number
             <InputForm type="tel" name="number" placeholder="+380" />
             <Error component="div" name="number" />
-          </Label>
-          <FormBtn type="submit">Add contact</FormBtn>
-        </FormStyle>
-      </Formik>
+          </Label> */}
+        <FormBtn type="submit">Add contact</FormBtn>
+      </FormStyle>
     </SectionForm>
   );
 }

@@ -1,4 +1,4 @@
-import { Form, Field, ErrorMessage } from 'formik';
+import { Field, ErrorMessage } from 'formik';
 import styled from 'styled-components';
 
 export const SectionForm = styled.section`
@@ -10,7 +10,7 @@ export const SectionForm = styled.section`
   }
 `;
 
-export const FormStyle = styled(Form)`
+export const FormStyle = styled.form`
   display: flex;
   flex-flow: column;
   align-items: center;

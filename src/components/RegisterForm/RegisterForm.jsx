@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import TextField from '@mui/material/TextField';
-import { SectionRegisterForm, FormBtn } from './RegisterForm.styled';
+import { SectionRegisterForm, FormBtn, FormStyle } from './RegisterForm.styled';
 import { register } from 'redux/auth/operations';
 
 const shema = yup.object().shape({
@@ -38,11 +38,6 @@ export default function RegisterForm() {
 
   const dispatch = useDispatch();
 
-  // const handleSubmit = (values, { resetForm }) => {
-  //   dispatch(register(values));
-  //   resetForm();
-  // };
-
   const formik = useFormik({
     initialValues,
     validationSchema: shema,
@@ -54,7 +49,7 @@ export default function RegisterForm() {
 
   return (
     <SectionRegisterForm>
-      <form onSubmit={formik.handleSubmit}>
+      <FormStyle onSubmit={formik.handleSubmit}>
         <TextField
           required
           value={formik.values.name}
@@ -97,23 +92,8 @@ export default function RegisterForm() {
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
         />
-        {/* <Label>
-            Name
-            <InputForm type="text" name="name" />
-            <Error component="div" name="name" />
-          </Label>
-          <Label>
-            Email
-            <InputForm type="email" name="email" />
-            <Error component="div" name="email" />
-          </Label>
-          <Label>
-            Password
-            <InputForm type="password" name="password" />
-            <Error component="div" name="password" />
-          </Label> */}
         <FormBtn type="submit">Register</FormBtn>
-      </form>
+      </FormStyle>
     </SectionRegisterForm>
   );
 }

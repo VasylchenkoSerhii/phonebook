@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import TextField from '@mui/material/TextField';
 import * as yup from 'yup';
 import { SectionRegisterForm } from './LoginForm.styled';
-import { FormBtn } from './LoginForm.styled';
+import { FormBtn, FormStyle } from './LoginForm.styled';
 import { logIn } from 'redux/auth/operations';
 
 const shema = yup.object().shape({
@@ -31,11 +31,6 @@ export default function LoginForm() {
 
   const dispatch = useDispatch();
 
-  // const handleSubmit = (values, { resetForm }) => {
-  //   dispatch(logIn(values));
-  //   resetForm();
-  // };
-
   const formik = useFormik({
     initialValues,
     validationSchema: shema,
@@ -47,7 +42,7 @@ export default function LoginForm() {
 
   return (
     <SectionRegisterForm>
-      <form onSubmit={formik.handleSubmit}>
+      <FormStyle onSubmit={formik.handleSubmit}>
         <TextField
           required
           value={formik.values.email}
@@ -76,18 +71,8 @@ export default function LoginForm() {
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
         />
-        {/* <Label>
-            Email
-            <InputForm type="email" name="email" />
-            <Error component="div" name="email" />
-          </Label>
-          <Label>
-            Password
-            <InputForm type="password" name="password" />
-            <Error component="div" name="password" />
-          </Label> */}
         <FormBtn type="submit">Log in</FormBtn>
-      </form>
+      </FormStyle>
     </SectionRegisterForm>
   );
 }
