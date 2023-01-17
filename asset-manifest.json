@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/phonebook/static/css/main.f6a18ea8.css",
-    "main.js": "/phonebook/static/js/main.7970d90d.js",
+    "main.js": "/phonebook/static/js/main.2937215e.js",
     "static/js/485.0b058d8a.chunk.js": "/phonebook/static/js/485.0b058d8a.chunk.js",
-    "static/js/951.3a835418.chunk.js": "/phonebook/static/js/951.3a835418.chunk.js",
-    "static/js/427.1ea63918.chunk.js": "/phonebook/static/js/427.1ea63918.chunk.js",
-    "static/js/284.1c879db1.chunk.js": "/phonebook/static/js/284.1c879db1.chunk.js",
-    "static/js/182.9e20c94e.chunk.js": "/phonebook/static/js/182.9e20c94e.chunk.js",
+    "static/js/951.bb905a82.chunk.js": "/phonebook/static/js/951.bb905a82.chunk.js",
+    "static/js/427.74cc914a.chunk.js": "/phonebook/static/js/427.74cc914a.chunk.js",
+    "static/js/284.de46c826.chunk.js": "/phonebook/static/js/284.de46c826.chunk.js",
+    "static/js/488.7d2b4419.chunk.js": "/phonebook/static/js/488.7d2b4419.chunk.js",
     "static/js/116.ef5cc46d.chunk.js": "/phonebook/static/js/116.ef5cc46d.chunk.js",
     "index.html": "/phonebook/index.html",
     "main.f6a18ea8.css.map": "/phonebook/static/css/main.f6a18ea8.css.map",
-    "main.7970d90d.js.map": "/phonebook/static/js/main.7970d90d.js.map",
+    "main.2937215e.js.map": "/phonebook/static/js/main.2937215e.js.map",
     "485.0b058d8a.chunk.js.map": "/phonebook/static/js/485.0b058d8a.chunk.js.map",
-    "951.3a835418.chunk.js.map": "/phonebook/static/js/951.3a835418.chunk.js.map",
-    "427.1ea63918.chunk.js.map": "/phonebook/static/js/427.1ea63918.chunk.js.map",
-    "284.1c879db1.chunk.js.map": "/phonebook/static/js/284.1c879db1.chunk.js.map",
-    "182.9e20c94e.chunk.js.map": "/phonebook/static/js/182.9e20c94e.chunk.js.map",
+    "951.bb905a82.chunk.js.map": "/phonebook/static/js/951.bb905a82.chunk.js.map",
+    "427.74cc914a.chunk.js.map": "/phonebook/static/js/427.74cc914a.chunk.js.map",
+    "284.de46c826.chunk.js.map": "/phonebook/static/js/284.de46c826.chunk.js.map",
+    "488.7d2b4419.chunk.js.map": "/phonebook/static/js/488.7d2b4419.chunk.js.map",
     "116.ef5cc46d.chunk.js.map": "/phonebook/static/js/116.ef5cc46d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f6a18ea8.css",
-    "static/js/main.7970d90d.js"
+    "static/js/main.2937215e.js"
   ]
 }
